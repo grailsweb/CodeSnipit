@@ -26,13 +26,23 @@
                     <!-- sidebar menu: : style can be found in sidebar.less -->
                     <ul class="sidebar-menu">
                         <li class="active">
-                            <a href="index.html">
+                            <a href="/fontawasom">
                                 <i class="fa fa-dashboard"></i> <span>Dashboard</span>
                             </a>
                         </li>
                         <li>
-                            <a href="pages/widgets.html">
-                                <i class="fa fa-th"></i> <span>Widgets</span> <small class="badge pull-right bg-green">new</small>
+                            <a href="/fontawasom/person/index">
+                                <i class="fa fa-th"></i> <span>Person</span>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="/fontawasom/person/datafilter">
+                                <i class="fa fa-th"></i> <span>Filter</span> <small class="badge pull-right bg-blue">new</small>
+                            </a>
+                        </li>
+                           <li>
+                            <a href="/fontawasom/person/testp">
+                                <i class="fa fa-th"></i> <span>TestP</span> <small class="badge pull-right bg-red">new</small>
                             </a>
                         </li>
                         <li class="treeview">

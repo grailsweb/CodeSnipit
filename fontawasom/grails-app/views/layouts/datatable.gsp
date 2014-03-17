@@ -32,13 +32,21 @@
  
     <!-- page script -->
         <script type="text/javascript">
+        var  oTable;
         $( document ).ready(function()  {
-                              
-                $('#example').dataTable( {
+                            
+        	 oTable=  $('#example').DataTable( {
                     "dom": 'T<"clear">lfrtip',
                     "tableTools": {
                         "sSwfPath": "http://next.datatables.net/release-datatables/extensions/TableTools/swf/copy_csv_xls_pdf.swf"
-                    }
+                    },
+                    sScrollY: '70%',
+                    bProcessing: true,
+                    bServerSide: true,
+                    sAjaxSource: '${request.contextPath + '/person/dataTablesData'}' ,
+                    sPaginationType: "full_numbers",
+                    aLengthMenu: [[5,10,100, 500, 1000, 5000, -1], [5,10,100, 500, 1000, 5000, "All"]],
+                    iDisplayLength: 5
                 } );
             });
         </script>
