@@ -33,18 +33,24 @@
 			<g:if test="${flash.message}">
 				<div class="message" role="status">${flash.message}</div>
 			</g:if>
-			<table id="example" class="display" cellspacing="0" width="100%">
+				<table id="example" class="display" cellspacing="0" width="100%">
 			<thead>
 					<tr>
-					<td>	${message(code: 'person.firstName.label', default: 'First Name')} </td>					
-					<td>${message(code: 'person.lastName.label', default: 'Last Name')}</td>					
-						<td>${message(code: 'person.dateOfBirth.label', default: 'Date Of Birth')}</td>					
+					<th>${message(code: 'person.firstName.label', default: 'First Name')} </th>					
+					<th>${message(code: 'person.lastName.label', default: 'Last Name')}</th>					
+					<th>${message(code: 'person.dateOfBirth.label', default: 'Date Of Birth')}</th>						
 					</tr>
 				</thead>
+				<tfoot>
+					<tr>
+					<th>${message(code: 'person.firstName.label', default: 'First Name')} </th>					
+					<th>${message(code: 'person.lastName.label', default: 'Last Name')}</th>					
+					<th>${message(code: 'person.dateOfBirth.label', default: 'Date Of Birth')}</th>					
+					</tr>
+				</tfoot>
 				<tbody>
 				<g:each in="${personInstanceList}" status="i" var="personInstance">
-					<tr>
-					
+					<tr>					
 						<td> ${fieldValue(bean: personInstance, field: "firstName")}</td>
 					
 						<td>${fieldValue(bean: personInstance, field: "lastName")}</td>
@@ -52,15 +58,13 @@
 						<td><g:formatDate date="${personInstance.dateOfBirth}" /></td>
 					
 					</tr>
-				</g:each>
+									</g:each>			
+					
 				</tbody>
 			</table>
 			
 		</div>
-		
-		
-		 
-                </section><!-- /.content -->
+		</section><!-- /.content -->
             </aside><!-- /.right-side -->
         
 	</body>

@@ -6,6 +6,10 @@ class BootStrap {
 	def servletContext
 	def init = { servletContext ->
 
+	/*	JSON.registerObjectMarshaller(Date) {
+			return it?.format("dd-MM-yyyy")
+		 }
+		*/
 		def appName = grailsApplication.metadata['app.name']
 
 		println 'BootStrap running!'
@@ -39,12 +43,7 @@ class BootStrap {
 	}
 
 	private def testdata(){
-		// Create some test data
-		new Book(author:"Stephen King",title:"The Shining").save()
-		new Book(author:"James Patterson",title:"Along Came a Spider").save()
-		new Book(author: 'myBook', title: 'this is my book').save()
-
-		def johnDoe = new Person( firstName: "John", lastName: "Doe" ).save(failOnError: true)
+		def johnDoe = new Person( firstName: "John", lastName: "Doe", dateOfBirth:new Date() ).save(failOnError: true)
 		def joeReed = new Person( firstName: "Joe", lastName: "Reed" ).save(failOnError: true)
 		def jimSmith = new Person( firstName: "Jim", lastName: "Smith" ).save(failOnError: true)
 		def patrickHartwin = new Person( firstName: "Patrick", lastName: "Hartwin" ).save(failOnError: true)
@@ -53,11 +52,11 @@ class BootStrap {
 		def sarahMathews = new Person( firstName: "Sarah", lastName: "Mathews" ).save(failOnError: true)
 		def lisaPudock = new Person( firstName: "Lisa", lastName: "Pudock" ).save(failOnError: true)
 		def karaWhiting = new Person( firstName: "Kara", lastName: "Whiting" ).save(failOnError: true)
-		new Person( firstName: "Bill", lastName: "Ramasamy" ).save(failOnError: true)
+		new Person( firstName: "Bill", lastName: "Ramsi",dateOfBirth:new Date()  ).save(failOnError: true)
 		new Person( firstName: "Ranaga", lastName: "Suri" ).save(failOnError: true)
 		new Person( firstName: "Anana", lastName: "Ravi" ).save(failOnError: true)
 		new Person( firstName: "Zona", lastName: "Narayana" ).save(failOnError: true)
-		new Person( firstName: "Bama", lastName: "Thiru" ).save(failOnError: true)
+		new Person( firstName: "Bama", lastName: "mynaki" ).save(failOnError: true)
 		new Person( firstName: "vijai", lastName: "Manikam" ).save(failOnError: true)
 		new Person( firstName: "deva", lastName: "mani" ).save(failOnError: true)
 	}

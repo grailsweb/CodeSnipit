@@ -17,33 +17,35 @@
 <script type="text/javascript"  src="//cdn.datatables.net/1.10.0-beta.2/js/jquery.dataTables.js"></script>
 <script type="text/javascript"  src="//cdn.datatables.net/plug-ins/505bef35b56/integration/bootstrap/3/dataTables.bootstrap.js"></script>
 <script type="text/javascript"  src="http://next.datatables.net/release-datatables/extensions/TableTools/js/dataTables.tableTools.js"></script> 
-<script type="text/javascript"  src="http://jquery-datatables-column-filter.googlecode.com/svn/trunk/media/js/jquery.dataTables.columnFilter.js"></script>
-<script type="text/javascript" src="http://yadcf-showcase.appspot.com/resources/js/fnReloadAjax.js"></script>
+
 <script type="text/javascript"   src="http://almsaeedstudio.com/AdminLTE/js/AdminLTE/app.js"></script>
 
-
-         <!-- page script -->
-       <script type="text/javascript">
-        var  oTable;
+<script type="text/javascript">
+      
         $( document ).ready(function()  {
-                            
-        	 oTable=  $('#example').dataTable( {
+
+        	 
+            var table=  $('#example').DataTable( {
                     "dom": 'T<"clear">lfrtip',
                     "tableTools": {
                         "sSwfPath": "http://next.datatables.net/release-datatables/extensions/TableTools/swf/copy_csv_xls_pdf.swf"
                     },                   
-                    bProcessing: true,
-                    bServerSide: true,
-                    sAjaxSource: '${request.contextPath + '/person/listAjax'}',
-                    aoColumns: [
-                          	    {mDataProp: 'firstName', sClass: 'center', bSortable: true, bSearchable:true},
-                          	    {mDataProp: 'lastName', bSortable: true, bSearchable:true},
-                          	    {mDataProp: 'dateOfBirth', bSortable: true, bSearchable:false},
-                          	  ],
-                    sPaginationType: "full_numbers",
-                    aLengthMenu: [[5,10,100, 500, 1000, 5000, -1], [5,10,100, 500, 1000, 5000, "All"]],
-                    iDisplayLength: 5
-                } ).columnFilter();
+                   "bProcessing": true,
+                    "bServerSide": true,
+                    "ajax": {
+                        "url": "${request.contextPath + '/person/listAjax2'}",
+                        "type": "POST"
+                    },
+                    "columns": [
+                        { "data": "firstName","orderable": true , "searchable": true },
+                        { "data": "lastName" },
+                        { "data": "dateOfBirth" }
+                    ],                  
+                    "sPaginationType": "full_numbers",
+                    "aLengthMenu": [[5,10,100, 500, 1000, 5000, -1], [5,10,100, 500, 1000, 5000, "All"]],
+                    "iDisplayLength": 5
+                } );
+
              
             });
         </script>

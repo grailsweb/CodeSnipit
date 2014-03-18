@@ -1,8 +1,11 @@
 package fontawasom
 import java.util.Date;
+import org.grails.databinding.BindingFormat
 
 class Person {
 	String firstName, lastName
+	
+	@BindingFormat('dd-MM-yyyy')
 	Date dateOfBirth
 
 	static mapping = {
