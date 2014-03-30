@@ -10,6 +10,8 @@ import grails.transaction.Transactional
 @Transactional(readOnly = true)
 class PersonController {
 	def dataTableJsonService
+	def DataTable10JsonService
+
 	static allowedMethods = [save: "POST", update: "PUT", delete: "DELETE"]
 
 	def testp(){
@@ -17,7 +19,6 @@ class PersonController {
 		respond Person.list(params), model:[personInstanceCount: Person.count()]
 	}
 	def dtjqui(){
-
 	}
 	def dcl(){
 		respond Person.list(params), model:[personInstanceCount: Person.count()]
@@ -32,11 +33,22 @@ class PersonController {
 	def listAjax() {
 		def where =""
 		def fieldFormat = []
-		//println " in ajax" + params
+		params?.each{ println ("it: " + it) }
 		render dataTableJsonService.process(params, Person, where, fieldFormat)
 		// params contains all fields from datatable request
 		// Foo is the name of your domain class you want get data
 		return
+	}
+	def listAjax2(){
+		def where =""
+		def fieldFormat = []
+		def dt = params.findAll{ it.key ==~ /start/ }.size()
+		//println "column " + dt
+		if( dt == 0 ){
+			 render dataTableJsonService.process(params, Person, where, fieldFormat)
+			 return
+		}
+		render DataTable10JsonService.process(params,Person)
 	}
 
 	/**
@@ -238,17 +250,5 @@ class PersonController {
 		}
 	}
 
-	def listAjax2(){
-		println params
-	params?.each{ println ("it: " + it) }
-	println params?.start
-	println params."order[0][dir]"
-	println params."columns[1][data]"
-	int len= params.findAll{ it.key ==~ /columns\[\d+\]\[data\]/ }.size()
-	for(int i=0;  i<len; i++){
-		def str="columns["+i+"][data]"
-		println i + " ==> " + params."$str"
-	}
 
-	}
 }

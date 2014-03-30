@@ -4,7 +4,7 @@ import grails.transaction.Transactional
 import grails.converters.JSON
 @Transactional
 class DataTableJsonService {
-
+	// create-service fontawasom.DataTable10JsonService
 	def process(params, domain, restrictions, returnFields) {
 		def dataToRender = [:];
 		def filters = []
@@ -16,7 +16,7 @@ class DataTableJsonService {
 			}
 		}
 		def filter = filters.join(" OR ")
-		
+
 		// column filter for all fileds
 		for(int i=0; i<params.iColumns; i++) {
 			if(params['sSearch_' + i]?.trim()?.length() > 0 ) {
@@ -73,14 +73,15 @@ class DataTableJsonService {
 			if ( result ) {
 				dataToRender.iTotalDisplayRecords = result[0]
 			}
-
+			println "filter :" + query.toString()
+			println  "%${params.sSearch}%"
 			rows = domain.findAll(query.toString(), [filter: "%${params.sSearch}%"],
 			[max: params.iDisplayLength as int,
 				offset: params.iDisplayStart as int])
 		} else {
 			int ma = params.iDisplayLength ? params.iDisplayLength as int : 10;
 			int off = params.iDisplayStart ? params.iDisplayStart as int : 0;
-
+			println query.toString()
 			rows = domain.findAll(query.toString(), [max: ma ,  offset: off])
 		}
 
