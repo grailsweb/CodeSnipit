@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+   <application id="Application_ID" 
+                xmlns="http://java.sun.com/xml/ns/j2ee" 
+                xmlns:j2ee="http://java.sun.com/xml/ns/j2ee" 
+                xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+                xsi:schemaLocation="http://java.sun.com/xml/ns/j2ee http://java.sun.com/xml/ns/j2ee/application_1_4.xsd" 
+                version="1.4">
+      <description>Samples Gallery Enterprise Application</description>
+      <display-name>Samples Gallery EAR</display-name>
+       <module id="WebModule_1">
+         <web>
+            <web-uri>GalleryMenu.war</web-uri>
+            <context-root>/SamplesGallery</context-root>
+         </web>
+       </module>
+       <module id="WebModule_2">
+         <web>
+            <web-uri>Gallery.war</web-uri>
+            <context-root>/WSsamples</context-root>
+         </web>
+       </module>
+   </application>

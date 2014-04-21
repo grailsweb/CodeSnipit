@@ -1,0 +1,33 @@
+#!/bin/bash
+#
+# apache
+#
+# chkconfig: 5 85 15
+# description: Start up the Apache web server.
+RETVAL=$?
+APACHE_HOME="/opt/IBM/HTTPServer"
+case "$1" in
+start)
+	if [ -f $APACHE_HOME/bin/apachectl ]; then
+		echo $"Starting IBM Http Server"
+		$APACHE_HOME/bin/apachectl start
+	fi
+;;
+stop)
+	if [ -f $APACHE_HOME/bin/apachectl ]; then
+		echo $"Stopping IBM Http Server"
+		$APACHE_HOME/bin/apachectl stop
+	fi
+;;
+status)
+	if [ -f $APACHE_HOME/bin/apachectl ]; then
+		echo $"Show status of IBM Http Server"
+		$APACHE_HOME/bin/apachectl status
+	fi
+;;
+*)
+	echo $"Usage: $0 {start|stop|status}"
+	exit 1
+;;
+esac
+exit $RETVAL

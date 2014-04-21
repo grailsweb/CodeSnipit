@@ -1,0 +1,14 @@
+<%@page language="java" %>
+<html>
+
+<head>
+<title>Ejb3 Stateless Tutorial</title>
+</head>
+
+<body bgcolor="#FFFFCC">
+
+<p align="center"><font size="6" color="#800000"><b>Welcome to <br>
+Ejb3-WebSphere 8.5.5 Tutorial</b></font>
+Click <a href="ejb3/index.jsp">Calculator Example</a> to execute Calculator<br></p>
+</body>
+</html>

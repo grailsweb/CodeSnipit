@@ -1,0 +1,63 @@
+#!/bin/bash
+#
+# apache
+#
+# chkconfig: 5 90 10
+# description: Start up the WebSphere Application Server.
+
+USER="webuser"
+# Change it web user
+SUO=""
+id |grep -q "uid=0(" && SUO="su - $USER -c "
+RETVAL=$?
+WAS_HOME="/opt/IBM/WebSphere/AppServer"
+DMGR="$WAS_HOME/profiles/Dmgr01/bin/startManager.sh"
+NODEAGENT="$WAS_HOME/profiles/AppSrv01/bin/startNode.sh"
+SERVER1="$WAS_HOME/profiles/AppSrv01/bin/startServer.sh"
+
+STOP_SERVER1="$WAS_HOME/profiles/AppSrv01/bin/stopServer.sh"
+STOP_NODEA="$WAS_HOME/profiles/AppSrv01/bin/stopNode.sh"
+STOP_DMGR="$WAS_HOME/profiles/Dmgr01/bin/stopManager.sh"
+case "$1" in
+start)
+
+if [ -f $DMGR ]; then
+	echo $"Starting IBM WebSphere Application Server"
+	$SUO $DMGR
+	if [ -f $NODEAGENT ] ; then
+		echo "Starting Node Agent"
+		$SUO $NODEAGENT
+		if [ -f $SERVER1 ] ; then
+			echo "Starting server1"
+			$SUO "$SERVER1 server1"
+		fi
+	fi
+fi
+;;
+stop)
+	if [ -f $STOP_SERVER1 ]; then
+		echo $"Stop IBM WebSphere Application Server"
+		$SUO $STOP_SERVER1 server1
+	fi
+	if [ -f $STOP_NODEA ]; then
+		echo $"Stop IBM WebSphere NodeAgent"
+		$SUO $STOP_NODEA 
+	fi
+	if [ -f $STOP_DMGR ]; then
+		echo $"Stop IBM WebSphere dmgr"
+		$SUO $STOP_DMGR
+	fi
+
+;;
+status)
+if [ -f $WAS_HOME/bin/serverStatus.sh ]; then
+echo $"Show status of IBM WebSphere Application Server"
+$WAS_HOME/bin/serverStatus.sh server1
+fi
+;;
+*)
+echo $"Usage: $0 {start|stop|status}"
+exit 1
+;;
+esac
+exit $RETVAL
